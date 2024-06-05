@@ -1,35 +1,51 @@
+import { fileURLToPath, URL } from 'node:url'
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
-  publicDir: 'public',
-  // cacheDir: 'node_modules/.vite',
-  cacheDir: '.vite-cache',
-
-  // 项目别名配置
+  plugins: [vue(), vueJsx(), VueDevTools()],
   resolve: {
+    // path alias setting, @ -> src/
     alias: {
-      '@': '/src',
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
-
-  // css配置
+  cacheDir: '.vite', // change cache dir form node_modules/.vite to .vite
+  // css config
   css: {
-    // css预处理器的选项
     preprocessorOptions: {
-      // scss 预设样式
       scss: {
         additionalData: `
-          @import "@/assets/scss/theme.scss";
           @import "@/assets/scss/index.scss";
-        `,
-      },
-    },
+          @import "@/assets/scss/theme.scss";
+        `
+      }
+    }
   },
-
-
-  plugins: [vue()],
+  // dev config
+  server: {
+    port: 51120,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:51121',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  },
+  // preview config
+  preview: {
+    port: 51130,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:51131',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })

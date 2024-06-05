@@ -1,21 +1,14 @@
+import './assets/css/main.css'
+
 import { createApp } from 'vue'
-// css
-import './assets/css/normalize.css'
-import './assets/css/style.css'
+import { createPinia } from 'pinia'
 
 import App from './App.vue'
+import router from './router'
 
-// store setup function
-import setupStore from './store'
-function bootstrap() {
-  const app = createApp(App)
+const app = createApp(App)
 
-  // store setup
-  setupStore(app)
+app.use(createPinia())
+app.use(router)
 
-  // router setup
-
-  app.mount('#app')
-}
-
-bootstrap()
+app.mount('#app')
