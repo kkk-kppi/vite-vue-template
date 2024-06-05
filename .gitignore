@@ -31,6 +31,7 @@ coverage
 
 # Vite cache
 .vite
+.vite-cache
 
 # Vitest code coverage coverage resule file
 coverage
