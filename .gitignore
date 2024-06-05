@@ -24,4 +24,7 @@ dist-ssr
 *.sw?
 
 # vite cache file dir
-.vite-cache
+.vite
+
+# coverage
+coverage
