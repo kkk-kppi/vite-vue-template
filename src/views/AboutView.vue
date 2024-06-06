@@ -5,15 +5,18 @@
       <TheTestProps />
       <TheTestScss />
       <TheTestTailwind />
+      <TheTestPiniaStore />
+      <TheTestPiniaStore2 />
     </div>
   </div>
-  
 </template>
 
 <script lang="ts" setup>
-import TheTestProps from '@/components/TheTestProps.vue';
-import TheTestScss from '@/components/TheTestScss.vue';
-import TheTestTailwind from '@/components/TheTestTailwind.vue';
+import TheTestProps from '@/components/TheTestProps.vue'
+import TheTestScss from '@/components/TheTestScss.vue'
+import TheTestTailwind from '@/components/TheTestTailwind.vue'
+import TheTestPiniaStore from '@/components/TheTestPiniaStore.vue'
+import TheTestPiniaStore2 from '@/components/TheTestPiniaStore2.vue'
 </script>
 
 <style scoped lang="scss">

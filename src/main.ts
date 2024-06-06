@@ -1,14 +1,25 @@
 import './assets/css/main.css'
 
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import router from './router'
 
-const app = createApp(App)
+import { setupStore } from './stores/main'
+import { setupRouter } from './router'
 
-app.use(createPinia())
-app.use(router)
+// 自调用函数
+;(() => {
+  // create vue app instance
+  const app = createApp(App)
 
-app.mount('#app')
+  // setup store in app
+  setupStore(app)
+
+  // setup router in app
+  setupRouter(app)
+
+  // mount app
+  app.mount('#app')
+
+  console.log(import.meta.env)
+})()

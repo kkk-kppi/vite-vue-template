@@ -5,18 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview --host",
+    "build": "run-p type-check \"build-prod {@}\" --",
+    "build:test": "run-p type-check \"build-test {@}\" --",
+    "build:preview": "pnpm build & pnpm preview",
     "test:unit": "vitest",
+    "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "build-only": "vite build",
+    "build-prod": "vite build --mode production",
+    "build-test": "vite build --mode test",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/",
-    "build:preview": "pnpm build & pnpm preview"
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
@@ -28,6 +32,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.5",
