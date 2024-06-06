@@ -1,3 +1,4 @@
+import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -19,5 +20,18 @@ const router = createRouter({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log('App Router to：', to)
+  console.log('App Router from：', from)
+  next()
+})
+
+function setupRouter(app: App) {
+  // 挂载路由
+  app.use(router)
+}
+
+export { setupRouter }
 
 export default router
