@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
-import type { UserConfig, ConfigEnv } from 'vite'
+import type { ConfigEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
@@ -52,4 +52,4 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       }
     }
   }
-}) as UserConfig // 断言为UserConfig类型，否则报错：vitest.config.ts:6:3 - error TS2345: Argument of type 'UserConfigFnObject' is not assignable to parameter of type 'never'.
+})
