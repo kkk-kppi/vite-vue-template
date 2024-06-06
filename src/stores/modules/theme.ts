@@ -21,7 +21,8 @@ export const useThemeStore = defineStore('theme', {
   },
   persist: {
     beforeRestore: (ctx) => {
-      console.log('beforeRestore', ctx)
+      console.log('theme store beforeRestore:', ctx)
+      console.log('theme store 即将恢复的数据为：', ctx.store.$state)
     }
   }
 })

@@ -16,6 +16,7 @@ export const useCounterStore = defineStore(
     persist: {
       beforeRestore: (ctx) => {
         console.log('counter store beforeRestore:', ctx)
+        console.log('counter store 即将恢复的数据为：', ctx.store.$state)
       }
     }
   }
