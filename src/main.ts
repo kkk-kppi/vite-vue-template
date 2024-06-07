@@ -6,9 +6,11 @@ import App from './App.vue'
 
 import { setupStore } from './stores/main'
 import { setupRouter } from './router'
+// mock worker
+import { setupMockWorker } from './mocks/main'
 
 // 自调用函数
-;(() => {
+;(async () => {
   // create vue app instance
   const app = createApp(App)
 
@@ -17,6 +19,9 @@ import { setupRouter } from './router'
 
   // setup router in app
   setupRouter(app)
+
+  // setup mock worker
+  await setupMockWorker()
 
   // mount app
   app.mount('#app')

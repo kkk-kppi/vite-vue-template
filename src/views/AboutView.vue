@@ -7,6 +7,7 @@
       <TheTestTailwind />
       <TheTestPiniaStore />
       <TheTestPiniaStore2 />
+      <TheTestMock />
     </div>
   </div>
 </template>
@@ -17,6 +18,7 @@ import TheTestScss from '@/components/TheTestScss.vue'
 import TheTestTailwind from '@/components/TheTestTailwind.vue'
 import TheTestPiniaStore from '@/components/TheTestPiniaStore.vue'
 import TheTestPiniaStore2 from '@/components/TheTestPiniaStore2.vue'
+import TheTestMock from '@/components/TheTestMock.vue'
 </script>
 
 <style scoped lang="scss">

@@ -43,3 +43,38 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### Mock Server
+
+[Mock Service Worker](https://mswjs.io/) - 在浏览器中模拟真实的网络请求和响应
+
+```sh
+npm install msw@latest --save-dev
+npx msw init public
+```
+
+[Faker.js](https://fakerjs.dev/) - 一个制造假数据的库
+
+```sh
+npm install @faker-js/faker --save-dev
+```
+
+#### new dir in src, name is mocks
+
+```sh
+mkdir src/mocks
+touch src/mocks/index.ts
+
+import { setupWorker } from 'msw/browser'
+import { UserHandles } from './modules/user'
+
+export const browserWorker = setupWorker(...UserHandles)
+
+export function setupMockWorker() {
+  if (import.meta.env.DEV) {
+    return browserWorker.start()
+  } else {
+    return Promise.resolve()
+  }
+}
+```
