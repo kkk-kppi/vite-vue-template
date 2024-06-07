@@ -8,8 +8,8 @@ import TheTestTailwind from '../TheTestTailwind.vue'
 describe('TheTestTailwind', () => {
   it('renders tailwind component', () => {
     const wrapper = mount(TheTestTailwind)
-    expect(wrapper.text()).toContain(
-      'Hello world!  项目中需要让VSCode使用tailwindcss时有只能提示，是因为VSCode默认在编写字符串时不自动显示建议， 在项目的.vscode/settings.json中增加 "editor.quickSuggestions": { "strings": "on" } 即可开启 Test VSCode in tailwind css'
-    )
+    expect(wrapper.get('.title').text()).contain('Hello world!')
+    expect(wrapper.get('.desc').attributes('class')).toBe('desc mt-8 ml-4 m-0 mr-4')
+    expect(wrapper.get('.desc').text()).contain('Test VSCode in tailwind css')
   })
 })
