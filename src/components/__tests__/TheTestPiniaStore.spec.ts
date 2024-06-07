@@ -9,6 +9,7 @@ import { useCounterStore } from '@/stores/modules/counter'
 
 // TheTestPiniaStore
 import TheTestPiniaStore from '../TheTestPiniaStore.vue'
+import TheTestPiniaStore2 from '../TheTestPiniaStore2.vue'
 
 describe('TheTestPiniaStore', () => {
   // 在每次测试之前，创建一个新的 Pinia 实例，相当于给每个应用实例注册一个pinia实例
@@ -46,5 +47,46 @@ describe('TheTestPiniaStore', () => {
       expect(wrapper.find('.count span').text()).toBe('2')
       expect(wrapper.find('.double-count span').text()).toBe('4')
     })
+  })
+
+  // 测试pinia的值在夸组件间传递是否正常
+  it('测试pinia的值在夸组件间传递是否正常', async () => {
+    const counterStore = useCounterStore()
+
+    const wrapper1 = mount(TheTestPiniaStore)
+    const wrapper2 = mount(TheTestPiniaStore2)
+
+    // 初始值
+    expect(wrapper1.find('.count span').text()).toBe('0')
+    expect(wrapper2.find('.count span').text()).toBe('0')
+
+    // 触发点击wrapper1中，自增值
+    wrapper1.find('.increment').trigger('click')
+    await wrapper1.vm.$nextTick()
+    await wrapper2.vm.$nextTick()
+    expect(wrapper1.find('.count span').text()).toBe('1')
+    expect(wrapper1.get('.double-count span').text()).toBe('2')
+    expect(wrapper2.find('.count span').text()).toBe('1')
+    expect(wrapper2.get('.double-count span').text()).toBe('2')
+
+    // 触发点击wrapper2中，自增值
+    wrapper2.find('.increment').trigger('click')
+    await wrapper1.vm.$nextTick()
+    await wrapper2.vm.$nextTick()
+    expect(wrapper1.find('.count span').text()).toBe('2')
+    expect(wrapper1.get('.double-count span').text()).toBe('4')
+    expect(wrapper2.find('.count span').text()).toBe('2')
+    expect(wrapper2.get('.double-count span').text()).toBe('4')
+
+    // 模拟这两个组件外触发自增
+    counterStore.increment()
+    await wrapper1.vm.$nextTick()
+    expect(wrapper1.find('.count span').text()).toBe('3')
+    expect(wrapper1.get('.double-count span').text()).toBe('6')
+
+    counterStore.increment()
+    await wrapper2.vm.$nextTick()
+    expect(wrapper2.find('.count span').text()).toBe('4')
+    expect(wrapper2.get('.double-count span').text()).toBe('8')
   })
 })
