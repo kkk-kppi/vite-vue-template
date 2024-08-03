@@ -10,6 +10,7 @@ import { setupRouter } from './router'
 import { setupMockWorker } from './mocks/main'
 
 // 自调用函数
+import { infoLogger } from './common/logger'
 ;(async () => {
   // create vue app instance
   const app = createApp(App)
@@ -25,6 +26,5 @@ import { setupMockWorker } from './mocks/main'
 
   // mount app
   app.mount('#app')
-
-  console.log(import.meta.env)
+  infoLogger('Application start in [#app] Element')
 })()

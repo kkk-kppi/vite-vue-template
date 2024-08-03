@@ -5,7 +5,6 @@ import { faker } from '@faker-js/faker/locale/zh_CN'
 
 export const UserHandles = [
   http.get('/api/user', (res) => {
-    console.log(res)
     return HttpResponse.json({
       code: 0,
       message: 'success',

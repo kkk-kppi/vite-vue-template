@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { noticeLogger } from '@/common/logger'
 
 export const useCounterStore = defineStore(
   'counter',
@@ -15,8 +16,9 @@ export const useCounterStore = defineStore(
   {
     persist: {
       beforeRestore: (ctx) => {
-        console.log('counter store beforeRestore:', ctx)
-        console.log('counter store 即将恢复的数据为：', ctx.store.$state)
+        noticeLogger(
+          `The [theme] store is being restored, 恢复的数据为：${JSON.stringify(ctx.store.$state)}`
+        )
       }
     }
   }

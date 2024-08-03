@@ -1,3 +1,4 @@
+import { noticeLogger } from '@/common/logger'
 import { defineStore } from 'pinia'
 
 export const useThemeStore = defineStore('theme', {
@@ -21,8 +22,9 @@ export const useThemeStore = defineStore('theme', {
   },
   persist: {
     beforeRestore: (ctx) => {
-      console.log('theme store beforeRestore:', ctx)
-      console.log('theme store 即将恢复的数据为：', ctx.store.$state)
+      noticeLogger(
+        `The [theme] store is being restored, 恢复的数据为：${JSON.stringify(ctx.store.$state)}`
+      )
     }
   }
 })

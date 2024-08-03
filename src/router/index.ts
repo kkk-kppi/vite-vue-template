@@ -1,6 +1,8 @@
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+//
+import { infoLogger } from '@/common/logger'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,14 +24,15 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('App Router to：', to)
-  console.log('App Router from：', from)
+  infoLogger(`App Router to：${to.fullPath}`)
+  infoLogger(`App Router from：${from.fullPath}`)
   next()
 })
 
 function setupRouter(app: App) {
   // 挂载路由
   app.use(router)
+  infoLogger('Application use [Router]')
 }
 
 export { setupRouter }
