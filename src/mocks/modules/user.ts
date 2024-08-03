@@ -1,10 +1,22 @@
 import { http, HttpResponse } from 'msw'
 import { faker } from '@faker-js/faker/locale/zh_CN'
 
+// 请求拦截器
+import mswRequestInterceptor from '../request.interceptor'
+
 // axios、基于axios的axle.js、请求策略库alova.js
 
 export const UserHandles = [
   http.get('/api/user', (res) => {
+    if (
+      mswRequestInterceptor &&
+      !mswRequestInterceptor({
+        cookie: res.cookies
+      })
+    ) {
+      return new HttpResponse(null, { status: 403 })
+    }
+
     return HttpResponse.json({
       code: 0,
       message: 'success',
