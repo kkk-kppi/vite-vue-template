@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 
-import { setupStore } from './stores/main'
+import { setupStore } from './stores'
 import { setupRouter } from './router'
 // mock worker
 import { setupMockWorker } from './mocks/main'

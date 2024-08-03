@@ -1,6 +1,8 @@
 import type { App } from 'vue'
 import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-plugin-persistedstate'
+//
+import { infoLogger } from '@/common/logger'
 
 export function setupStore(app: App) {
   const pinia = createPinia()
@@ -35,6 +37,7 @@ export function setupStore(app: App) {
   pinia.use(persistedState)
 
   app.use(pinia)
+  infoLogger('Application use [Pinia]')
 }
 
 /*
