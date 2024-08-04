@@ -45,7 +45,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     resolve: {
       // path alias setting, @ -> src/
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        hooks: fileURLToPath(new URL('./src/common/hooks', import.meta.url))
       }
     },
     cacheDir: '.vite', // change cache dir form node_modules/.vite to .vite
