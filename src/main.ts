@@ -6,6 +6,7 @@ import App from './App.vue'
 
 import { setupStore } from './stores'
 import { setupRouter } from './router'
+import { setupDirectives } from './common/directives'
 // mock worker
 import { setupMockWorker } from './mocks/main'
 
@@ -20,6 +21,9 @@ import { infoLogger } from './common/logger'
 
   // setup router in app
   setupRouter(app)
+
+  // setup directives in app
+  setupDirectives(app)
 
   // setup mock worker
   await setupMockWorker()
