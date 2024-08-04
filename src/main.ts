@@ -1,3 +1,8 @@
+// vfonts包含常规字体和等宽字体
+// 配置字体，see - https://www.naiveui.com/zh-CN/os-theme/docs/fonts
+import 'vfonts/Lato.css'
+import 'vfonts/FiraCode.css'
+// 自定义的css内容
 import './assets/css/main.css'
 
 import { createApp } from 'vue'
@@ -9,9 +14,10 @@ import { setupRouter } from './router'
 import { setupDirectives } from './common/directives'
 // mock worker
 import { setupMockWorker } from './mocks/main'
-
 // 自调用函数
 import { infoLogger } from './common/logger'
+
+// app setup
 ;(async () => {
   // create vue app instance
   const app = createApp(App)
