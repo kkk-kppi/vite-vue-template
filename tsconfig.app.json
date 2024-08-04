@@ -6,7 +6,11 @@
     "src/**/*.vue",
     "src/**/**/*.vue",
     // 
-    "/env/*.ts"
+    "/env/*.ts",
+    // 包含auto-imports.d.ts，让ts能知道有声明过，自动引入不报错
+    "./auto-imports.d.ts",
+    // 
+    "./components.d.ts"
   ],
   "exclude": [
     "src/**/__tests__/*"
